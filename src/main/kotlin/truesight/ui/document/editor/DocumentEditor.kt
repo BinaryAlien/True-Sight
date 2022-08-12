@@ -13,22 +13,13 @@ class DocumentEditor private constructor(private val document: Document) : Edito
         openEditors.add(this)
         contentPane = editorPane
         addWindowListener(object : WindowAdapter() {
-            override fun windowClosing(event: WindowEvent) {
-                handleClosing()
-            }
-
             override fun windowClosed(event: WindowEvent) {
                 openEditors.remove(this@DocumentEditor)
             }
         })
     }
 
-    override fun close() {
-        super.close()
-        handleClosing()
-    }
-
-    private fun handleClosing() {
+    override fun saveChanges() {
         editorPane.saveChanges()
         Project.catalog.handleUpdate(document)
     }
@@ -53,6 +44,9 @@ class DocumentEditor private constructor(private val document: Document) : Edito
         }
 
         fun closeAll() = openEditors.forEach { it.close() }
+
+        fun forceSaveAll() = openEditors.forEach { it.saveChanges() }
+        fun forceCloseAll() = openEditors.forEach { it.dispose() }
 
         private fun find(document: Document) = openEditors.find { it.document == document }
     }
