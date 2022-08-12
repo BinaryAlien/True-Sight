@@ -34,7 +34,7 @@ class CatalogTable : DocumentTable(Project.catalog) {
         autoCreateRowSorter = true
         componentPopupMenu = Helper.createPopupMenuFrom(actionMap)
         selectionModel.selectionMode = ListSelectionModel.MULTIPLE_INTERVAL_SELECTION
-        setColumnWidth(Catalog.Column.METHOD.index, 70)
-        setColumnWidth(Catalog.Column.STATUS.index, 60)
+        setColumnWidth(Catalog.Column.METHOD.index, 50)
+        setColumnWidth(Catalog.Column.STATUS.index, 47)
     }
 }

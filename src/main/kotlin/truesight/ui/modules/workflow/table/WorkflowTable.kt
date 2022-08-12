@@ -53,7 +53,7 @@ class WorkflowTable(override val model: WorkflowTableModel) : DocumentTable(mode
     }
 
     private fun initColumns() {
-        setColumnWidth(Catalog.Column.METHOD.index, 70)
-        setColumnWidth(Catalog.Column.STATUS.index, 60)
+        setColumnWidth(Catalog.Column.METHOD.index, 50)
+        setColumnWidth(Catalog.Column.STATUS.index, 47)
     }
 }
