@@ -3,7 +3,7 @@ package truesight.ui.http.variable
 import truesight.Helper
 import truesight.http.Variable
 import truesight.ui.Table
-import truesight.ui.http.variable.actions.ActionCopy
+import truesight.ui.http.variable.actions.ActionCopyClipboard
 import truesight.ui.http.variable.actions.ActionGlobalSubstitution
 import javax.swing.ListSelectionModel
 
@@ -29,7 +29,7 @@ class VariableTable(variables: List<Variable>) : Table() {
     }
 
     private fun initActions() {
-        actionMap.put(ActionCopy.KEY, ActionCopy(this))
+        actionMap.put(ActionCopyClipboard.KEY, ActionCopyClipboard(this))
         actionMap.put(ActionGlobalSubstitution.KEY, ActionGlobalSubstitution(this))
     }
 

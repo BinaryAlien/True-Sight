@@ -4,7 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import truesight.http.Variable
 
-/** `x-www-form-urlencoded` request body. */
+/** 'x-www-form-urlencoded' request body. */
 class Form(val fields: List<Variable>) : Body() {
     constructor(json: JSONArray) : this(json.asSequence()
         .map { Variable(it as JSONObject, Variable.Type.FORM_DATA) }

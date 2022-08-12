@@ -6,7 +6,7 @@ import java.awt.datatransfer.StringSelection
 import java.awt.event.ActionEvent
 import javax.swing.AbstractAction
 
-class ActionCopy(private val table: VariableTable) : AbstractAction("Copy to clipboard") {
+class ActionCopyClipboard(private val table: VariableTable) : AbstractAction("Copy to clipboard") {
     override fun actionPerformed(event: ActionEvent) {
         val variables = table.selectedVariables
         val contents = StringSelection(variables.joinToString(System.lineSeparator()))
