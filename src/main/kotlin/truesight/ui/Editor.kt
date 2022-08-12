@@ -10,7 +10,6 @@ open class Editor(title: String) : JDialog(Extension.owningWindow, title) {
 
     init {
         defaultCloseOperation = DISPOSE_ON_CLOSE
-        super.setLocationRelativeTo(parent)
         super.addWindowListener(object : WindowAdapter() {
             override fun windowClosing(event: WindowEvent) {
                 saveChanges()
@@ -19,6 +18,16 @@ open class Editor(title: String) : JDialog(Extension.owningWindow, title) {
     }
 
     open fun saveChanges() {}
+
+    fun centerLocationRelativeToParent() {
+        if (parent == null) {
+            setLocation(0, 0)
+        } else {
+            val x = parent.x + parent.width / 2 - width / 2
+            val y = parent.y + parent.height / 2 - height / 2
+            setLocation(x, y)
+        }
+    }
 
     fun close() {
         if (!isClosing) {

@@ -13,6 +13,8 @@ class WorkflowEditor private constructor(private val workflow: Workflow) : Edito
     init {
         openEditors.add(this)
         contentPane = editorPane
+        pack()
+        centerLocationRelativeToParent()
         addWindowListener(object : WindowAdapter() {
             override fun windowClosed(event: WindowEvent) {
                 openEditors.remove(this@WorkflowEditor)
@@ -32,7 +34,6 @@ class WorkflowEditor private constructor(private val workflow: Workflow) : Edito
             var editor = find(workflow)
             if (editor == null) {
                 editor = WorkflowEditor(workflow)
-                editor.pack()
                 editor.isVisible = true
             } else {
                 editor.requestFocus()

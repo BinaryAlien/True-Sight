@@ -12,6 +12,8 @@ class DocumentEditor private constructor(private val document: Document) : Edito
     init {
         openEditors.add(this)
         contentPane = editorPane
+        pack()
+        centerLocationRelativeToParent()
         addWindowListener(object : WindowAdapter() {
             override fun windowClosed(event: WindowEvent) {
                 openEditors.remove(this@DocumentEditor)
@@ -31,7 +33,6 @@ class DocumentEditor private constructor(private val document: Document) : Edito
             var editor = find(document)
             if (editor == null) {
                 editor = DocumentEditor(document)
-                editor.pack()
                 editor.isVisible = true
             } else {
                 editor.requestFocus()
