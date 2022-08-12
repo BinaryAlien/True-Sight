@@ -4,7 +4,7 @@ import truesight.ui.modules.workflow.table.WorkflowTable
 import java.awt.event.ActionEvent
 import javax.swing.AbstractAction
 
-class ActionRemove(private val table: WorkflowTable) : AbstractAction("Remove") {
+class ActionRemove(private val table: WorkflowTable) : AbstractAction("Remove (workflow)") {
     override fun actionPerformed(event: ActionEvent) {
         table.selectedDocuments.forEach { it.workflow = null }
     }
