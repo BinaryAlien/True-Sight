@@ -1,5 +1,6 @@
 package truesight.ui.modules.workflow.editor
 
+import truesight.Extension
 import truesight.Project
 import truesight.Workflow
 import javax.swing.*
@@ -14,10 +15,8 @@ class OverviewPane(private val workflow: Workflow) : JPanel() {
     }
 
     fun saveChanges() {
-        val newWorkflowName = nameField.text.trim()
-        if (newWorkflowName.isNotBlank() && !Project.workflows.exists(newWorkflowName))
-            workflow.name = newWorkflowName
-        workflow.description = descriptionField.text.ifBlank { null }
+        saveName()
+        saveDescription()
     }
 
     private fun initPane() {
@@ -33,6 +32,21 @@ class OverviewPane(private val workflow: Workflow) : JPanel() {
         /* Workflow */
         descriptionField.isEditable = true
         descriptionField.text = workflow.description
+    }
+
+    private fun saveName() {
+        val newName = nameField.text.trim()
+        if (newName.isBlank())
+            return
+        else if (newName.equals(workflow.name, ignoreCase = true) || !Project.workflows.exists(newName))
+            workflow.name = newName
+        else
+            JOptionPane.showMessageDialog(Extension.owningWindow, "Cannot rename a workflow with an existing name.",
+                "Name collision", JOptionPane.ERROR_MESSAGE)
+    }
+
+    private fun saveDescription() {
+        workflow.description = descriptionField.text.ifBlank { null }
     }
 
     private fun createLayout(): GroupLayout {
