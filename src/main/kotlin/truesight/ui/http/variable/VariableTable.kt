@@ -7,11 +7,11 @@ import truesight.ui.http.variable.actions.ActionCopyClipboard
 import truesight.ui.http.variable.actions.ActionGlobalSubstitution
 import javax.swing.ListSelectionModel
 
-class VariableTable(variables: List<Variable>) : Table() {
+class VariableTable(variables: List<Variable>, type: Variable.Type) : Table() {
     val selectedVariables: List<Variable>
         get() = model.getVariablesAt(selectedRows.map { convertRowIndexToModel(it) })
 
-    val model = VariableTableModel(variables)
+    val model = VariableTableModel(variables, type)
 
     init {
         initActions()

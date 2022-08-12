@@ -8,8 +8,7 @@ import javax.swing.AbstractAction
 
 class ActionCopyClipboard(private val table: VariableTable) : AbstractAction("Copy to clipboard") {
     override fun actionPerformed(event: ActionEvent) {
-        val variables = table.selectedVariables
-        val contents = StringSelection(variables.joinToString(System.lineSeparator()))
+        val contents = StringSelection(table.model.createClipboardCopy(table.selectedVariables))
         clipboard.setContents(contents, null)
     }
 

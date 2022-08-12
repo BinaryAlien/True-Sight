@@ -3,10 +3,12 @@ package truesight.ui.http.variable
 import truesight.http.Variable
 import javax.swing.table.AbstractTableModel
 
-class VariableTableModel(private var variables: List<Variable>)
+class VariableTableModel(private var variables: List<Variable>, private val type: Variable.Type)
     : AbstractTableModel() {
     fun getVariableAt(rowIndex: Int) = variables[rowIndex]
     fun getVariablesAt(rowIndexes: List<Int>) = rowIndexes.map { getVariableAt(it) }
+
+    fun createClipboardCopy(variables: List<Variable>) = variables.joinToString(type.separator)
 
     override fun getRowCount() = variables.size
     override fun getColumnCount() = columnNames.size

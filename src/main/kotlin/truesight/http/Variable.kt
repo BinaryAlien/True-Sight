@@ -59,8 +59,11 @@ data class Variable(
         return json
     }
 
-    enum class Type {
-        HEADER, QUERY_PARAMETER, COOKIE, FORM_DATA
+    enum class Type(val separator: String) {
+        HEADER("\r\n"),
+        QUERY_PARAMETER("&"),
+        COOKIE("; "),
+        FORM_DATA("&")
     }
 
     private object Keys {
