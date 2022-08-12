@@ -53,6 +53,8 @@ class OverviewPane(private val workflow: Workflow) : JPanel() {
         val layout = GroupLayout(this)
         layout.autoCreateGaps = true
 
+        val descriptionScrollPane = JScrollPane(descriptionField)
+
         val nameLabel = JLabel("Name")
         val descriptionLabel = JLabel("Description")
 
@@ -63,16 +65,16 @@ class OverviewPane(private val workflow: Workflow) : JPanel() {
                     .addComponent(descriptionLabel))
                 .addGroup(layout.createParallelGroup()
                     .addComponent(nameField)
-                    .addComponent(descriptionField)))
+                    .addComponent(descriptionScrollPane)))
 
         layout.setVerticalGroup(
             layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE, false)
                     .addComponent(nameLabel)
                     .addComponent(nameField))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE, false)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(descriptionLabel)
-                    .addComponent(descriptionField)))
+                    .addComponent(descriptionScrollPane)))
 
         return layout
     }
